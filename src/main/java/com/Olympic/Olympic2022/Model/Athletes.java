@@ -18,59 +18,88 @@ public class Athletes {
 	private long id;
 	
 	@Column(name = "fullname")
-	private String FullName;
+	private String fullname;
 	
 	@Column(name = "country")
-	private String Country;
+	private String country;
 	
 	@Column(name = "sport")
-	private String Sport;
+	private String sport;
 	
 	@Column(name = "totalMedals")
-	private String TotalMedals;
+	private int totalMedals;
+	
+	@Column(name = "image")
+	private String image;
 	
 	public Athletes() {	
 	}
 	
-	public Athletes(String FullName, String Country, String Sport, String TotalMedals) {
-		super();
-		this.FullName = FullName;
-		this.Country = Country;
-		this.Sport = Sport;
-		this.TotalMedals = TotalMedals;
-	}
-	
+//	public Athletes(String fullname, String country, String sport, int totalMedals) {
+//		super();
+//		this.fullname = fullname;
+//		this.country = country;
+//		this.sport = sport;
+//		this.totalMedals = totalMedals;
+//	}
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getCountry() {
-		return Country;
-	}
-	public void setCountry(String Country) {
-		this.Country = Country;
-	}
-	public String getSport() {
-		return Sport;
-	}
-	
-	public void setSport(String Sport) {
-		this.Sport = Sport;
-	}
-	public String getTotalMedals() {
-		return TotalMedals;
-	}
-	public void setTotalMedals(String TotalMedals) {
-		this.TotalMedals = TotalMedals;
-	}
-	public String getFullName() {
-		return FullName;
-	}
-	public void setFullName(String FullName) {
-		this.FullName = FullName;
-	}
-	
 
+	public String getFullname() {
+		return fullname;
+	}
+	
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+	public String getSport() {
+		return sport;
+	}
+
+	public void setSport(String sport) {
+		this.sport = sport;
+	}
+
+	public int getTotalMedals() {
+		return totalMedals;
+	}
+
+	public void setTotalMedals(int totalMedals) {
+		this.totalMedals = totalMedals;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public void set(int i, Athletes athletes) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

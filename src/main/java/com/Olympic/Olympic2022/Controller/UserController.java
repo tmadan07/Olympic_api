@@ -3,6 +3,8 @@ package com.Olympic.Olympic2022.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,17 @@ public class UserController {
 	
 	@Autowired
 	private UserRepo userRepo;
+	
+//	@PostMapping("/login")
+//	public User login(@RequestBody String username) {
+//		User user = userRepo.findByEmail(username);
+//        if (username == null) {
+//            throw new UsernameNotFoundException("User not found");
+//        }
+//		
+//		return userRepo.save(username);
+//	}
+	
 
 	//get all User 
 	@GetMapping("/register")
@@ -31,19 +44,13 @@ public class UserController {
 	//create user
 	@PostMapping("/register") 
 	public User createUsers (@RequestBody User user) {
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	    String encodedPassword = passwordEncoder.encode(user.getPassword());
+	    user.setPassword(encodedPassword);
 		return userRepo.save(user);
 	}
 	
-//	@PostMapping("/process_register")
-//	public String processRegister(User user) {
-//	    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-//	    String encodedPassword = passwordEncoder.encode(user.getPassword());
-//	    user.setPassword(encodedPassword);
-//	     
-//	    userRepo.save(user);
-//	     
-//	    return "register_success";
-//	}
+
 }
 	
 	

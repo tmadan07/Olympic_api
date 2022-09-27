@@ -1,5 +1,7 @@
 package com.Olympic.Olympic2022.Model;
 
+import java.util.Collection;
+
 import javax.persistence.*;
 
 @Entity
@@ -31,6 +33,20 @@ public class User {
     
     public User() {	
 	}
+    
+//    private Collection<Role> roles;
+    
+//    public User(String firstName, String lastName, String email, String password, String username, String country,
+//    		Collection<Role> roles) {
+//		super();
+//		this.firstName = firstName;
+//		this.lastName = lastName;
+//		this.email = email;
+//		this.password = password;
+//		this.username = username;
+//		this.country = country;
+////		this.roles = roles;
+//	}
 
 	public Long getId() {
 		return id;
@@ -88,5 +104,10 @@ public class User {
 		this.username = username;
 	}
      
-    // getters and setters are not shown   
+//	public Collection<Role> getRoles() {
+//		return roles;
+//	}
+//	public void setRoles(Collection<Role> roles) {
+//		this.roles = roles;
+//	} 
 }
