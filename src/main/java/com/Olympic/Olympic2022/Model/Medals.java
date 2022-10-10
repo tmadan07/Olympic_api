@@ -16,12 +16,22 @@ public class Medals {
 	 @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "id_Sequence")
    @SequenceGenerator(name = "id_Sequence", sequenceName = "ID_SEQ")
 	
+	private long id;
+	
 	@Column(name = "rank")
 	private int rank;
 	
 	@Column(name = "country")
 	private String country;
 	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@Column(name = "gold")
 	private int gold;
 	
@@ -83,5 +93,6 @@ public class Medals {
 
 	public void setTotal(int total) {
 		this.total = total;
-	}	
+	}
+	
 }

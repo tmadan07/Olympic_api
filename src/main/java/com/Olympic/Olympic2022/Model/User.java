@@ -1,11 +1,17 @@
 package com.Olympic.Olympic2022.Model;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users",
+uniqueConstraints = { 
+		@UniqueConstraint(columnNames = "username"),
+		@UniqueConstraint(columnNames = "email") 
+	})
 public class User {
      
     @Id
@@ -30,6 +36,14 @@ public class User {
     
     @Column(name = "username", nullable = false, length = 20)
     private String username;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(	name = "user_roles", 
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
+    
+	private Set<Role> roles = new HashSet<>();
+
     
     public User() {	
 	}
@@ -104,10 +118,11 @@ public class User {
 		this.username = username;
 	}
      
-//	public Collection<Role> getRoles() {
-//		return roles;
-//	}
-//	public void setRoles(Collection<Role> roles) {
-//		this.roles = roles;
-//	} 
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Role> roles) {
+		this.roles = roles;
+	}
 }

@@ -1,10 +1,8 @@
 package com.Olympic.Olympic2022.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Olympic.Olympic2022.Service.AthletesService;
 import com.Olympic.Olympic2022.Model.Athletes;
 
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", maxAge=3600)
 @RestController
 @RequestMapping("/api/v1/")
 public class AthletesController {
@@ -33,7 +31,7 @@ public class AthletesController {
 		return  athletesService.getAllAthletes();
 	}
 	
-	@GetMapping("/athletes/player/{id}")  
+	@GetMapping("/athletes/{id}")  
 	private Athletes getAthletes(@PathVariable("id") long id)   
 	{  
 		 return athletesService.getBooksById(id);   

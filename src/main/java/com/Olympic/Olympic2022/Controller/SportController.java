@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.Olympic.Olympic2022.Model.Sport;
 import com.Olympic.Olympic2022.Repository.SportRepo;
 
-@CrossOrigin(origins = "http://localhost:3000" )
+@CrossOrigin(origins = "*", maxAge=3600)
 @RestController
 @RequestMapping("/api/v1/")
 public class SportController {
