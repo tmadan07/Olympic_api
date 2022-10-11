@@ -44,10 +44,10 @@ public class MedalsService {
 		
 	}
 
-	public Medals updateMedals(Medals medals) {
-		// TODO Auto-generated method stub
-		return medalsRepo.save(medals);
-	}
+//	public void updateMedals(long id, Medals medals) {
+//		// TODO Auto-generated method stub
+//		 medalsRepo.save(medals);
+//	}
 
 	public List<Medals> findAll() {
 		List<Medals> medals = new ArrayList<Medals>();  
@@ -58,6 +58,19 @@ public class MedalsService {
 	public Medals getMedalsById(long id) {
 	
 		return medalsRepo.findById(id).get();
+	}
+
+
+	public void updateMedals(long id, Medals medals) {
+		Medals m = medalsRepo.findById(id).get();
+		 m.setRank(medals.getRank());
+		 m.setCountry(medals.getCountry());
+		 m.setGold(medals.getGold());
+		 m.setSilver(medals.getSilver());
+		 m.setBronze(medals.getBronze());
+		 m.setTotal(medals.getTotal());
+		 medalsRepo.save(m);
+		
 	}
 
 	

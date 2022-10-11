@@ -3,6 +3,8 @@ package com.Olympic.Olympic2022.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,8 +59,9 @@ public class MedalsController {
 	
 	
 	 @PutMapping("/medal/{id}")
-	 public Medals updateMedals(@RequestBody Medals medals) {
-			return medalsService.updateMedals(medals);
+	 public ResponseEntity <Medals> updateMedals(@PathVariable("id") long id, @RequestBody Medals medals) {
+			 medalsService.updateMedals(id ,medals);
+			 return new ResponseEntity<>(medalsService.getMedalsById(id), HttpStatus.OK);
 		}
 
 }

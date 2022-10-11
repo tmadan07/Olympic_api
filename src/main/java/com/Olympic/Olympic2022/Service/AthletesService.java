@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.Olympic.Olympic2022.Model.Athletes;
+import com.Olympic.Olympic2022.Model.Medals;
 import com.Olympic.Olympic2022.Repository.AthletesRepo;
 
 @CrossOrigin(origins = "http://localhost:3000" )
@@ -23,6 +24,7 @@ public class AthletesService {
 	public void  saveProductToDB(MultipartFile file,String fullname,String country, String sport
 			,int totalMedals)
 	{
+		
 		Athletes a = new Athletes();
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		if(fileName.contains(".."))
@@ -30,6 +32,7 @@ public class AthletesService {
 			System.out.println("not a a valid file");
 		}
 		try {
+			
 			a.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -59,15 +62,32 @@ public class AthletesService {
 		return athletes;  
 	}
 
-	public Athletes updateAthletes(Athletes athletes) {
-		// TODO Auto-generated method stub
-		return athletesRepo.save(athletes);
-	}
+//	public Athletes updateAthletes(Athletes athletes) {
+//		// TODO Auto-generated method stub
+//		return athletesRepo.save(athletes);
+//	}
 
 
-	public Athletes getBooksById(long id) {
+	public Athletes getAthleteById(long id) {
 		return athletesRepo.findById(id).get();
 	}
+
+//	public void updateAthletes(long id, Athletes athletes) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+	
+	public void updateAthletes(long id, Athletes athletes) {
+		Athletes m = athletesRepo.findById(id).get();
+		 m.setImage(athletes.getImage());
+		 m.setCountry(athletes.getCountry());
+		 m.setFullname(athletes.getFullname());
+		 m.setSport(athletes.getSport());
+		 m.setTotalMedals(athletes.getTotalMedals());
+		 athletesRepo.save(m);
+		
+	}
+
 
 	
 

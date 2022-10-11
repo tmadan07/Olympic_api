@@ -13,4 +13,12 @@ public interface RegistrationService {
 
 	List<User> findAll();
 
+//	User updateUsers(User user);
+
+	void deleteUsers(long id);
+
+	User getUsersbyId(long id);
+
+	void updateUsers(long id, User user);
+
 }

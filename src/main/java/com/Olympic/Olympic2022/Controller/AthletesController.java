@@ -3,6 +3,8 @@ package com.Olympic.Olympic2022.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Olympic.Olympic2022.Service.AthletesService;
 import com.Olympic.Olympic2022.Model.Athletes;
+import com.Olympic.Olympic2022.Model.Medals;
 
 @CrossOrigin(origins = "*", maxAge=3600)
 @RestController
@@ -31,10 +34,10 @@ public class AthletesController {
 		return  athletesService.getAllAthletes();
 	}
 	
-	@GetMapping("/athletes/{id}")  
+	@GetMapping("/athlete/{id}")  
 	private Athletes getAthletes(@PathVariable("id") long id)   
 	{  
-		 return athletesService.getBooksById(id);   
+		 return athletesService.getAthleteById(id);   
 	} 
 	
 	
@@ -44,7 +47,7 @@ public class AthletesController {
 		return athletesService.save(athletes);
 	}
 	
-	@DeleteMapping("/athletes/{id}")  
+	@DeleteMapping("/athlete/{id}")  
 	private void deleteAthletes(@PathVariable("id") long id)   
 	{  
 		 athletesService.delete(id); 
@@ -52,9 +55,15 @@ public class AthletesController {
 	} 
 	
 	
-	 @PutMapping("/athletes/{id}")
-	 public Athletes updateAthletes(@RequestBody Athletes athletes) {
-			return athletesService.updateAthletes(athletes);
+//	 @PutMapping("/athlete/{id}")
+//	 public Athletes updateAthletes(@RequestBody Athletes athletes) {
+//			return athletesService.updateAthletes(athletes);
+//		}
+	 
+	 @PutMapping("/athlete/{id}")
+	 public ResponseEntity <Athletes> updateAthletes(@PathVariable("id") long id, @RequestBody Athletes athletes) {
+		 athletesService.updateAthletes(id ,athletes);
+			 return new ResponseEntity<>(athletesService.getAthleteById(id), HttpStatus.OK);
 		}
 }
 
